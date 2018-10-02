@@ -21,7 +21,10 @@ var inputDate = d3.select("#datetime");
 
 
 function loadTableData(dataRows) {
-
+  // console.log('In Load Table Data');
+  document.getElementById('table-content').innerHTML="";
+  // alert('cLEARING TABLE');
+  // tbody.html("");
   d3.select("tbody")
   
     .selectAll("tr")
@@ -43,7 +46,7 @@ function loadTableData(dataRows) {
    
   }
 
-// loadTableData(tableData);
+loadTableData(tableData);
 
 // 
 //Clear all previuos data from UFO table
@@ -72,6 +75,7 @@ function loadTableData(dataRows) {
 
 
 // User clicks the button to filter data
+
 submit.on("click", function() {
 
   // Prevent the page from refreshing
@@ -84,7 +88,9 @@ submit.on("click", function() {
   console.log("checksubmit2")
 
   // Create Filtered dataset based on InputValue entered by user
-  var filterdata = tableData.filter(onerec => onerec.datetime === inputValue);
+  if (inputValue) {
+  var filterdata = tableData.filter(onerec => onerec.datetime === inputValue);}
+  console.log('Filtering Data');
   console.log(filterdata);
  
   // Build new UFO Table with the filtered subset of UFO Sighting data
@@ -93,4 +99,4 @@ submit.on("click", function() {
   loadTableData(filterdata);
 });
 
-loadTableData(tableData);
+// loadTableData(tableData);
